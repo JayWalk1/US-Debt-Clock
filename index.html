@@ -9,17 +9,19 @@
             font-family: 'Arial', sans-serif;
             background-color: #f4f4f9;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
+            text-align: center;
         }
         #debtClockContainer {
-            text-align: center;
             padding: 20px;
             background: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
         #debtClockContainer h2 {
             font-size: 24px;
@@ -32,12 +34,43 @@
             color: #e74c3c;
             letter-spacing: 1px;
         }
+        .analogy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .analogy img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .analogy p {
+            font-size: 18px;
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div id="debtClockContainer">
         <h2>US National Debt</h2>
         <div id="debtClock">Loading...</div>
+    </div>
+    <div class="analogy">
+        <img src="path/to/moon.png" alt="Moon">
+        <p id="stackedBills">If you stacked $1 bills, the pile would reach to the moon and back X times.</p>
+    </div>
+    <div class="analogy">
+        <img src="path/to/time.png" alt="Time">
+        <p id="timeComparison">If you spent $100 every second, it would take you X years to spend $34.89 trillion.</p>
+    </div>
+    <div class="analogy">
+        <img src="path/to/cruise.png" alt="Cruise Ship">
+        <p id="weightComparison">The weight of $34.89 trillion in $100 bills is equivalent to the weight of X cruise ships.</p>
+    </div>
+    <div class="analogy">
+        <img src="path/to/football.png" alt="Football Field">
+        <p id="footballFields">If you laid out $1 bills end to end, they would cover about X football fields.</p>
     </div>
     <script src="debtClock.js"></script>
 </body>
