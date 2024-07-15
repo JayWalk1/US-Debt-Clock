@@ -30,7 +30,9 @@ function updateAnalogies(debt) {
     const inchesToMiles = 63360; // inches in a mile
     const debtInInches = debt / billThickness;
     const debtInMiles = debtInInches / inchesToMiles;
-    const moonTrips = formatPlainNumber((debtInMiles / moonDistance).toFixed(2));
+    const roundTripMiles = moonDistance * 2;
+    const billsForMoonTrip = roundTripMiles * inchesToMiles / billThickness;
+    const moonTrips = formatPlainNumber((debt / billsForMoonTrip).toFixed(2));
 
     document.getElementById('stackedBills').innerText = `If you stacked $1 bills, the pile would reach to the moon and back ${moonTrips} times.`;
 
@@ -41,8 +43,8 @@ function updateAnalogies(debt) {
 
     const billWeight = 1 / 453.592; // weight in pounds
     const debtWeight = debt * billWeight / 100;
-    const cruiseShipWeight = 70000; // average cruise ship weight in tons
-    const cruiseShips = formatPlainNumber((debtWeight / (cruiseShipWeight * 2000)).toFixed(2));
+    const cruiseShipWeight = 70000 * 2000; // average cruise ship weight in pounds
+    const cruiseShips = formatPlainNumber((debtWeight / cruiseShipWeight).toFixed(2));
 
     document.getElementById('weightComparison').innerText = `The weight of ${formatNumber(debt)} in $100 bills is equivalent to the weight of ${cruiseShips} cruise ships.`;
 
