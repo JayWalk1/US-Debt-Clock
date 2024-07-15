@@ -1,4 +1,5 @@
 async function fetchDebtData() {
+    console.log("Fetching data...");
     const response = await fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny');
     const data = await response.json();
     return data.data[0];
