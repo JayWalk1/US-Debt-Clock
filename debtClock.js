@@ -20,7 +20,7 @@ function formatNumber(number) {
 
 function formatPlainNumber(number) {
     return number.toLocaleString('en-US', {
-        minimumFractionDigits: 0,
+        minimumFractionDigits: 2,
     });
 }
 
