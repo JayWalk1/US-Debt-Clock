@@ -3,7 +3,11 @@ async function fetchDebtData() {
     const response = await fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny');
     const data = await response.json();
     console.log("Data fetched:", data);
-    return data.data[0];
+    // Find the most recent record
+    const mostRecentRecord = data.data.reduce((latest, record) => {
+        return new Date(record.record_date) > new Date(latest.record_date) ? record : latest;
+    }, data.data[0]);
+    return mostRecentRecord;
 }
 
 function formatNumber(number) {
