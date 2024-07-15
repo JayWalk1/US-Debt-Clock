@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: transparent; /* Set background to transparent */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -22,6 +22,7 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            text-align: center;
         }
         #debtClockContainer h2 {
             font-size: 24px;
@@ -34,10 +35,17 @@
             color: #e74c3c;
             letter-spacing: 1px;
         }
+        .analogy-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align to the left */
+            width: 100%;
+            max-width: 600px;
+        }
         .analogy {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Align to the left */
             margin: 10px 0;
         }
         .analogy img {
@@ -48,6 +56,7 @@
         .analogy p {
             font-size: 18px;
             color: #333;
+            margin: 0;
         }
     </style>
 </head>
@@ -56,21 +65,23 @@
         <h2>US National Debt</h2>
         <div id="debtClock">Loading...</div>
     </div>
-    <div class="analogy">
-        <img src="moon.png" alt="Moon">
-        <p id="stackedBills">If you stacked $1 bills, the pile would reach to the moon and back X times.</p>
-    </div>
-    <div class="analogy">
-        <img src="time.png" alt="Time">
-        <p id="timeComparison">If you spent $100 every second, it would take you X years to spend $34.89 trillion.</p>
-    </div>
-    <div class="analogy">
-        <img src="cruise.png" alt="Cruise Ship">
-        <p id="weightComparison">The weight of $34.89 trillion in $100 bills is equivalent to the weight of X cruise ships.</p>
-    </div>
-    <div class="analogy">
-        <img src="football.png" alt="Football Field">
-        <p id="footballFields">If you laid out $1 bills end to end, they would cover about X football fields.</p>
+    <div class="analogy-container">
+        <div class="analogy">
+            <img src="moon.png" alt="Moon">
+            <p id="stackedBills">If you stacked $1 bills, the pile would reach to the moon and back X times.</p>
+        </div>
+        <div class="analogy">
+            <img src="time.png" alt="Time">
+            <p id="timeComparison">If you spent $100 every second, it would take you X years to spend $34.89 trillion.</p>
+        </div>
+        <div class="analogy">
+            <img src="cruise.png" alt="Cruise Ship">
+            <p id="weightComparison">The weight of $34.89 trillion in $100 bills is equivalent to the weight of X cruise ships.</p>
+        </div>
+        <div class="analogy">
+            <img src="football.png" alt="Football Field">
+            <p id="footballFields">If you laid out $1 bills end to end, they would cover about X football fields.</p>
+        </div>
     </div>
     <script src="debtClock.js"></script>
 </body>
