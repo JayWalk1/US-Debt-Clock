@@ -11,7 +11,6 @@ async function fetchDebtData() {
 }
 
 function formatNumber(number) {
-    console.log("Formatting number:", number);
     return number.toLocaleString('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -19,25 +18,46 @@ function formatNumber(number) {
     });
 }
 
+function updateAnalogies(debt) {
+    const moonDistance = 238855; // miles to the moon
+    const billThickness = 0.0043; // inches
+    const inchesToMiles = 63,360; // inches in a mile
+    const debtInInches = debt / billThickness;
+    const debtInMiles = debtInInches / inchesToMiles;
+    const moonTrips = (debtInMiles / moonDistance).toFixed(2);
+    
+    document.getElementById('stackedBills').innerText = `If you stacked $1 bills, the pile would reach to the moon and back ${moonTrips} times.`;
+
+    const secondsInYear = 31,536,000;
+    const yearsToSpend = (debt / (100 * secondsInYear)).toFixed(2);
+    
+    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${yearsToSpend} years to spend $${formatNumber(debt)}.`;
+
+    const billWeight = 1 / 453.592; // weight in pounds
+    const debtWeight = debt * billWeight / 100;
+    const cruiseShipWeight = 70000; // average cruise ship weight in tons
+    const cruiseShips = (debtWeight / (cruiseShipWeight * 2000)).toFixed(2);
+
+    document.getElementById('weightComparison').innerText = `The weight of $${formatNumber(debt)} in $100 bills is equivalent to the weight of ${cruiseShips} cruise ships.`;
+
+    const billLength = 6.14; // inches
+    const footballFieldLength = 360 * 12; // inches
+    const footballFields = (debtInInches / footballFieldLength).toFixed(2);
+    
+    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${footballFields} football fields.`;
+}
+
 async function initializeDebtClock() {
     try {
         const debtData = await fetchDebtData();
-        console.log("Debt data:", debtData);
         const totalDebtString = debtData.tot_pub_debt_out_amt;
-        console.log("Total debt string:", totalDebtString);
         
-        // Remove any potential commas and convert to a float
         totalDebt = parseFloat(totalDebtString.replace(/,/g, ''));
-        console.log("Parsed total debt:", totalDebt);
-
         if (isNaN(totalDebt)) {
             throw new Error(`Parsed total debt is NaN for string: ${totalDebtString}`);
         }
 
-        // Example growth rate: Assume the debt increases by $1,000 per second
-        growthRatePerSecond = 1000; // Adjust this value as needed
-
-        // Start updating the debt clock
+        growthRatePerSecond = 1000; // Example growth rate, adjust as needed
         setInterval(updateDebtClock, 1000 / 60); // Update every 1/60th of a second for smooth animation
     } catch (error) {
         console.error("Error initializing debt clock:", error);
@@ -46,11 +66,9 @@ async function initializeDebtClock() {
 }
 
 function updateDebtClock() {
-    // Calculate the new total debt
-    totalDebt += growthRatePerSecond / 60; // Increment by the growth rate per frame
-
-    // Update the displayed debt
+    totalDebt += growthRatePerSecond / 60;
     document.getElementById('debtClock').innerHTML = formatNumber(totalDebt);
+    updateAnalogies(totalDebt);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
