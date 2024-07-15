@@ -21,11 +21,19 @@ async function displayDebtClock() {
         console.log("Debt data:", debtData);
         const totalDebtString = debtData.tot_pub_debt_out_amt;
         console.log("Total debt string:", totalDebtString);
+        
+        // Remove any potential commas and convert to a float
         const totalDebt = parseFloat(totalDebtString.replace(/,/g, ''));
-        console.log("Total debt:", totalDebt);
+        console.log("Parsed total debt:", totalDebt);
+
+        if (isNaN(totalDebt)) {
+            throw new Error(`Parsed total debt is NaN for string: ${totalDebtString}`);
+        }
+
         document.getElementById('debtClock').innerHTML = formatNumber(totalDebt);
     } catch (error) {
         console.error("Error displaying debt clock:", error);
+        document.getElementById('debtClock').innerHTML = "Error loading debt data";
     }
 }
 
