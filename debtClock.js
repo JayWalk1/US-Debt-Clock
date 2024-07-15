@@ -1,12 +1,10 @@
 async function fetchDebtData() {
     console.log("Fetching data...");
-    const response = await fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny');
+    const response = await fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny?sort=-record_date');
     const data = await response.json();
     console.log("Data fetched:", data);
-    // Find the most recent record
-    const mostRecentRecord = data.data.reduce((latest, record) => {
-        return new Date(record.record_date) > new Date(latest.record_date) ? record : latest;
-    }, data.data[0]);
+    // Fetch the first record which is the most recent due to sorting by record_date in descending order
+    const mostRecentRecord = data.data[0];
     return mostRecentRecord;
 }
 
