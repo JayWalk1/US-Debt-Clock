@@ -28,7 +28,7 @@ function updateAnalogies(debt) {
 
     document.getElementById('stackedBills').innerText = `If you stacked $1 bills, the pile would reach to the moon and back ${moonTrips} times.`;
 
-    const secondsInYear = 31,536,000;
+    const secondsInYear = 31536000; // Corrected to remove commas
     const yearsToSpend = (debt / (100 * secondsInYear)).toFixed(2);
 
     document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${yearsToSpend} years to spend ${formatNumber(debt)}.`;
