@@ -2,10 +2,12 @@ async function fetchDebtData() {
     console.log("Fetching data...");
     const response = await fetch('https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v2/accounting/od/debt_to_penny');
     const data = await response.json();
+    console.log("Data fetched:", data);
     return data.data[0];
 }
 
 function formatNumber(number) {
+    console.log("Formatting number:", number);
     return number.toLocaleString('en-US', {
         style: 'currency',
         currency: 'USD',
@@ -14,9 +16,15 @@ function formatNumber(number) {
 }
 
 async function displayDebtClock() {
-    const debtData = await fetchDebtData();
-    const totalDebt = parseFloat(debtData.total_public_debt_outstanding);
-    document.getElementById('debtClock').innerHTML = formatNumber(totalDebt);
+    try {
+        const debtData = await fetchDebtData();
+        console.log("Debt data:", debtData);
+        const totalDebt = parseFloat(debtData.total_public_debt_outstanding);
+        console.log("Total debt:", totalDebt);
+        document.getElementById('debtClock').innerHTML = formatNumber(totalDebt);
+    } catch (error) {
+        console.error("Error displaying debt clock:", error);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
