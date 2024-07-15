@@ -36,10 +36,10 @@ function updateAnalogies(debt) {
 
     document.getElementById('stackedBills').innerText = `If you stacked $1 bills, the pile would reach to the moon and back ${moonTrips} times.`;
 
-    const secondsInYear = 31536000; // Corrected to remove commas
-    const yearsToSpend = formatPlainNumber((debt / (100 * secondsInYear)).toFixed(2));
+    const secondsInYear = 31536000;
+    const yearsToSpend = (debt / (100 * secondsInYear)).toFixed(2);
 
-    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${yearsToSpend} years to spend ${formatNumber(debt)}.`;
+    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${formatPlainNumber(yearsToSpend)} years to spend ${formatNumber(debt)}.`;
 
     const billWeight = 1 / 453.592; // weight in pounds
     const debtWeight = debt * billWeight / 100;
@@ -50,9 +50,9 @@ function updateAnalogies(debt) {
 
     const billLength = 6.14; // inches
     const footballFieldLength = 360 * 12; // inches
-    const footballFields = formatPlainNumber((debtInInches / footballFieldLength).toFixed(2));
+    const footballFields = (debtInInches / footballFieldLength).toFixed(2);
 
-    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${footballFields} football fields.`;
+    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatPlainNumber(footballFields)} football fields.`;
 }
 
 async function initializeDebtClock() {
