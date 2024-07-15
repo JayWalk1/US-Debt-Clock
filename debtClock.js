@@ -19,7 +19,9 @@ async function displayDebtClock() {
     try {
         const debtData = await fetchDebtData();
         console.log("Debt data:", debtData);
-        const totalDebt = parseFloat(debtData.tot_pub_debt_out_amt);
+        const totalDebtString = debtData.tot_pub_debt_out_amt;
+        console.log("Total debt string:", totalDebtString);
+        const totalDebt = parseFloat(totalDebtString.replace(/,/g, ''));
         console.log("Total debt:", totalDebt);
         document.getElementById('debtClock').innerHTML = formatNumber(totalDebt);
     } catch (error) {
