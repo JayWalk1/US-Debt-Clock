@@ -66,7 +66,7 @@ async function initializeDebtClock() {
         }
 
         growthRatePerSecond = 1000; // Example growth rate, adjust as needed
-        setInterval(updateDebtClock, 1000 / 60); // Update every 1/60th of a second for smooth animation
+        setInterval(updateDebtClock, 10000 / 60); // Update every 1/60th of a second for smooth animation
     } catch (error) {
         console.error("Error initializing debt clock:", error);
         document.getElementById('debtClock').innerHTML = "Error loading debt data";
