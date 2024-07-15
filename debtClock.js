@@ -19,7 +19,7 @@ function formatNumber(number) {
 }
 
 function formatPlainNumber(number) {
-    return number.toLocaleString('en-US', {
+    return parseFloat(number).toLocaleString('en-US', {
         minimumFractionDigits: 2,
     });
 }
@@ -32,27 +32,27 @@ function updateAnalogies(debt) {
     const debtInMiles = debtInInches / inchesToMiles;
     const roundTripMiles = moonDistance * 2;
     const billsForMoonTrip = roundTripMiles * inchesToMiles / billThickness;
-    const moonTrips = formatPlainNumber((debt / billsForMoonTrip).toFixed(2));
+    const moonTrips = (debt / billsForMoonTrip).toFixed(2);
 
-    document.getElementById('stackedBills').innerText = `If you stacked $1 bills, the pile would reach to the moon and back ${moonTrips} times.`;
+    document.getElementById('stackedBills').innerText = `If you stacked $1 bills, the pile would reach to the moon and back ${formatPlainNumber(moonTrips)} times.`;
 
     const secondsInYear = 31536000;
     const yearsToSpend = (debt / (100 * secondsInYear)).toFixed(2);
 
-    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${formatNumber(yearsToSpend)} years to spend ${formatNumber(debt)}.`;
+    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${formatPlainNumber(yearsToSpend)} years to spend ${formatNumber(debt)}.`;
 
     const billWeight = 1 / 453.592; // weight in pounds
     const debtWeight = debt * billWeight / 100;
     const cruiseShipWeight = 70000 * 2000; // average cruise ship weight in pounds
-    const cruiseShips = formatPlainNumber((debtWeight / cruiseShipWeight).toFixed(2));
+    const cruiseShips = (debtWeight / cruiseShipWeight).toFixed(2);
 
-    document.getElementById('weightComparison').innerText = `The weight of ${formatNumber(debt)} in $100 bills is equivalent to the weight of ${cruiseShips} cruise ships.`;
+    document.getElementById('weightComparison').innerText = `The weight of ${formatNumber(debt)} in $100 bills is equivalent to the weight of ${formatPlainNumber(cruiseShips)} cruise ships.`;
 
     const billLength = 6.14; // inches
     const footballFieldLength = 360 * 12; // inches
     const footballFields = (debtInInches / footballFieldLength).toFixed(2);
 
-    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatNumber(footballFields)} football fields.`;
+    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatPlainNumber(footballFields)} football fields.`;
 }
 
 async function initializeDebtClock() {
