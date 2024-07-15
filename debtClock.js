@@ -39,7 +39,7 @@ function updateAnalogies(debt) {
     const secondsInYear = 31536000;
     const yearsToSpend = (debt / (100 * secondsInYear)).toFixed(2);
 
-    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${formatPlainNumber(yearsToSpend)} years to spend ${formatNumber(debt)}.`;
+    document.getElementById('timeComparison').innerText = `If you spent $100 every second, it would take you ${formatNumber(yearsToSpend)} years to spend ${formatNumber(debt)}.`;
 
     const billWeight = 1 / 453.592; // weight in pounds
     const debtWeight = debt * billWeight / 100;
@@ -52,7 +52,7 @@ function updateAnalogies(debt) {
     const footballFieldLength = 360 * 12; // inches
     const footballFields = (debtInInches / footballFieldLength).toFixed(2);
 
-    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatPlainNumber(footballFields)} football fields.`;
+    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatNumber(footballFields)} football fields.`;
 }
 
 async function initializeDebtClock() {
