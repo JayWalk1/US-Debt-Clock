@@ -52,7 +52,7 @@ function updateAnalogies(debt) {
     const footballFieldLength = 360 * 12; // inches
     const footballFields = (debtInInches / footballFieldLength).toFixed(2);
 
-    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatPlainNumber(footballFields)} football fields.`;
+    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatPlainNumber(footballFields)} American football fields.`;
 }
 
 async function initializeDebtClock() {
