@@ -47,12 +47,6 @@ function updateAnalogies(debt) {
     const cruiseShips = (debtWeight / cruiseShipWeight).toFixed(2);
 
     document.getElementById('weightComparison').innerText = `The weight of ${formatNumber(debt)} in $100 bills is equivalent to the weight of ${formatPlainNumber(cruiseShips)} cruise ships.`;
-
-    const billLength = 6.14; // inches
-    const footballFieldLength = 360 * 12; // inches
-    const footballFields = (debtInInches / footballFieldLength).toFixed(2);
-
-    document.getElementById('footballFields').innerText = `If you laid out $1 bills end to end, they would cover about ${formatPlainNumber(footballFields)} American football fields.`;
 }
 
 async function initializeDebtClock() {
@@ -66,7 +60,7 @@ async function initializeDebtClock() {
         }
 
         growthRatePerSecond = 1000; // Example growth rate, adjust as needed
-        setInterval(updateDebtClock, 10000 / 60); // Update every 1/60th of a second for smooth animation
+        setInterval(updateDebtClock, 1000 / 60); // Update every 1/60th of a second for smooth animation
     } catch (error) {
         console.error("Error initializing debt clock:", error);
         document.getElementById('debtClock').innerHTML = "Error loading debt data";
